@@ -10,24 +10,26 @@
       </ul>
     </div>
   <% end %>
-  
-   <div class="field">
+  <div class="container-form">
+   <div class="field-group">
     <%= form.label :title %>
-    <%= form.text_area :title %>
+    <%= form.text_field :title, placeholder: "Concepto" %>
   </div>
 
 
-  <div class="field">
-    <%= form.label :content %>
+  <div class="field-group">
+    <%= form.label :content, 'Description' %>
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+  <div class="field-group">
+    <%= form.label :user_id, 'User' %>
+     <%= form.collection_select(:user_id, User.all, :id, :name) %>
+    
   </div>
-
+  </div>
   <div class="actions">
-    <%= form.submit "Create Issue" %>
+    <%= form.submit "Create Issue", :class => 'button-primary' %>
+    <%= link_to 'Back', microposts_path, class: 'cancel'  %>
   </div>
 <% end %>
