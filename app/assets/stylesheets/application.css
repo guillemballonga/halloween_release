@@ -17,10 +17,105 @@
 
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-/*
-@media screen and (max-width: 600px) {
-  input[type=submit] {
-    width: 100%;
-    margin-top: 0;
+
+@media (max-width: 480px) {
+ th {
+   font-size:0.4em;
+ } 
+ 
+ td {
+   font-size:0.4em;
+ } 
+ 
+ .content-desktop {
+    display: none  !important;
+ }
+ 
+ .content-mobile {
+   display: block !important;
+ }
+ 
+ .content-mobile .icons-group {
+   font-size: 14px;
+   position: relative;
+   display: inline-flex;
+   vertical-align: middle;
   }
-}*/
+}
+
+@media (min-width:481px) and (max-width:767px) {
+ th {
+   font-size:0.5em;
+ } 
+ 
+ td {
+   font-size:0.5em;
+ } 
+ 
+ .btn .btn-primary .btn-sm {
+  font-size: 0.5em !important;
+ }
+ 
+ .content-desktop {
+    display: none  !important;
+ }
+ .content-mobile {
+   display: block !important;
+ }
+ 
+  .content-mobile .icons-group {
+   font-size: 20px;
+   position: relative;
+   display: inline-flex;
+   vertical-align: middle;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+ th {
+   font-size:0.6em;
+ } 
+ 
+ td {
+   font-size:0.6em;
+ }  
+ 
+ .btn-group-sm>.btn {
+  font-size: 0.6em !important;
+ } 
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+ th {
+   font-size:0.7em;
+ } 
+ 
+ td {
+   font-size:0.7em;
+ }  
+ 
+ .btn-group-sm>.btn {
+  font-size: 0.7em !important;
+ } 
+}
+
+@media (min-width: 1200px) {
+ th {
+   font-size:0.8em;
+ } 
+ 
+ td {
+   font-size:0.8em;
+ }
+ 
+  .btn-group-sm>.btn {
+  font-size: 0.8em !important;
+ } 
+  
+}
+
+
+.btn a, .btn a:visited, .btn a:hover{
+    color: #fff !important;
+    background-color: transparent !important;
+}
