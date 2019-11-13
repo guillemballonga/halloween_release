@@ -15,6 +15,12 @@
  */
 
 
+th,td {
+    
+   font-style: normal;
+   font-weight: 400; 
+   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+}
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 
@@ -71,47 +77,42 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 979px) {
- th {
-   font-size:0.6em;
- } 
+
+@media (min-width: 576px) and (max-width: 767px) {
  
- td {
-   font-size:0.6em;
- }  
- 
- .btn-group-sm>.btn {
-  font-size: 0.6em !important;
- } 
 }
 
-@media (min-width: 980px) and (max-width: 1199px) {
- th {
-   font-size:0.7em;
- } 
- 
- td {
-   font-size:0.7em;
+@media (min-width: 768px) and (max-width: 991px) {
+ th,  td {
+   font-size:0.625em;
  }  
  
  .btn-group-sm>.btn {
-  font-size: 0.7em !important;
- } 
+  font-size: 0.625rem  !important;
+ }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+ th,  td {
+   font-size:0.725em;
+ }  
+ 
+ .btn-group-sm>.btn {
+  font-size: 0.725rem  !important;
+ }
+ 
 }
 
 @media (min-width: 1200px) {
- th {
-   font-size:0.8em;
- } 
- 
- td {
-   font-size:0.8em;
+
+ th, td {
+   font-size:0.875rem;
+ }
+
+ .btn-group-sm>.btn {
+  font-size: 0.875rem  !important;
  }
  
-  .btn-group-sm>.btn {
-  font-size: 0.8em !important;
- } 
-  
 }
 
 
@@ -119,3 +120,5 @@
     color: #fff !important;
     background-color: transparent !important;
 }
+
+
