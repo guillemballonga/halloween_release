@@ -23,10 +23,34 @@
   </div>
 
   <div class="field-group">
-    <%= form.label :user_id, 'User' %>
+    <%= form.label :user_id, 'Assignee' %>
      <%= form.collection_select(:user_id, User.all, :id, :name) %>
     
   </div>
+  
+  <div class="field-group">
+    <%= form.label :kind, 'Kind' %>
+  <select>
+    <option value="0">bug</option>
+    <option value="1">enhancement</option>
+    <option value="2">proposal</option>
+    <option value="3">task</option>
+  </select>
+</div>
+
+  <div class="field-group">
+    <%= form.label :priority, 'Priority' %>
+  <select>
+    <option value="0">trivial</option>
+    <option value="1">minor</option>
+    <option value="2">major</option>
+    <option value="3">critical</option>
+    <option value="3">blocker</option>
+  </select>
+</div>
+    
+  </div>
+  
   <div class="input-group">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroupFileAddon01">Attach File</span>
