@@ -132,3 +132,12 @@ th,td {
     
 }
 
+.imgRedondaPerfil {
+    width:500px;
+    height:500px;
+    border-radius:200px;
+    border:20px solid #B02304;
+    text-align: right
+    
+    
+}

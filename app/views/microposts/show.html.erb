@@ -16,5 +16,10 @@
   <%= @micropost.user_id %>
 </p>
 
+<p>
+  <strong>CurrentUser:</strong>
+  <%= current_user.uid %>
+</p>
+
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |
 <%= link_to 'Back', microposts_path %>
