@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :microposts
   resources :users
-   #root 'microposts#index'
    
   #Login Google
   get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'home', to: 'home#show'
   get 'me', to: 'me#show', as: 'me'
-  #get 'me', to: 'microposts#index', as: 'me'
+  get 'issues', to: 'microposts#index', as: 'issues'
 
   root to: "home#show"
 end
