@@ -23,6 +23,21 @@ class CommentsController < ApplicationController
     end
   end
   
+  
+  #UPDATE comment
+  def update
+    respond_to do |format|
+      @comment = Comment.find(params[:id])
+      if @comment.update(comment_params)
+        format.html { redirect_to @micropost, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @micropost }
+      else
+        format.html { render :show }
+        format.json { render json: @micropost.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   # DELETE /micropost/1
   # DELETE /micropost/1.json
   def destroy
