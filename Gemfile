@@ -11,6 +11,9 @@ gem 'bootsnap',   '1.4.4', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
+#LoginGoogle
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem 'sqlite3', '1.4.1'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
