@@ -21,6 +21,15 @@
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>
+  
+    <font color="blue">User :</font>
+    <%= comment.user.name %>
+    
+    <font color="green">Creat fa :</font>
+    <%= time_ago_in_words(comment.created_at) %>
+    
+    <button type="button" class="btn btn-danger"><%= link_to 'Delete',comment, method: :delete, data: { confirm: 'Estàs segur?' }%></button>&nbsp;
+    
   </p>
 <% end %>
 

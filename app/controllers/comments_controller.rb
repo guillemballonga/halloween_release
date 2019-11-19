@@ -26,9 +26,11 @@ class CommentsController < ApplicationController
   # DELETE /micropost/1
   # DELETE /micropost/1.json
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to micropost_url, notice: 'Comment was successfully destroyed.' }
+      @micropost = Micropost.find_by_id(@comment.micropost_id)
+      format.html { redirect_to @micropost, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
