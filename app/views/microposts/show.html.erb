@@ -28,11 +28,14 @@
     <font color="green">Creat fa :</font>
     <%= time_ago_in_words(comment.created_at) %>
     
+    <!--if current_user.id == comment.user.id then -->
+    
+    
     <% if request.query_parameters["edit"] == comment.id.to_s then %>
           <div id="myform">
             <%= form_for [@micropost, comment] do |f| %>
-            <%= f.text_area :body, placeholder: "Update your comment" %><br/>
-            <%= f.submit "Update", class: "comment" %>
+            <%= f.text_area :body %><br/>
+            <%= f.submit "Update Comment", class: "comment" %>
             <% end %>
           </div>
   <% end %>
@@ -40,7 +43,7 @@
   <a href="?edit=<%= comment.id %>">Edit</a>
     
     <button style="border-color:red" type="button" class="btn btn-danger"><%= link_to 'Delete',comment, method: :delete, data: { confirm: 'Estàs segur?' }%></button>&nbsp;
-    
+    <!--  end (de la comprovació del current user) -->
   </p>
 <% end %>
 
