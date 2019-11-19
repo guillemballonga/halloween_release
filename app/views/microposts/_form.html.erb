@@ -24,7 +24,7 @@
 
   <div class="field-group">
     <%= form.label :user_id, 'Assignee' %>
-     <%= form.collection_select(:user_id, User.all, :id, :name) %>
+     <%= form.collection_select(:user_id, User.all, :id, :first_name) %>
     
   </div>
   

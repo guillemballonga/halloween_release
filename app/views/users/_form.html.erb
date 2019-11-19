@@ -12,13 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <strong><%= form.label :first_name %></strong>
+    <%= form.text_field :first_name %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <strong><%= form.label :last_name %></strong>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="text">
+   <strong> <%= form.label :email %></strong>
+    <p>
+  <%= current_user.email %>
+</p>
+
   </div>
 
   <div class="actions">
