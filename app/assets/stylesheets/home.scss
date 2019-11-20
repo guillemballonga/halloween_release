@@ -127,3 +127,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+.btn-separator:after {
+    content: ' ';
+    display: block;
+    float: left;
+    background: #ADADAD;
+    margin: 0 10px;
+    height: 34px;
+    width: 1px;
+}
