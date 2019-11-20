@@ -1,25 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5da8472b00.js" crossorigin="anonymous"></script>
+</head>
+<body>
 <p id="notice"><%= notice %></p>
+<div class="form-issue">
+  
 
-
-<p>
+<div class="container">
+  <h2>Issue</h2>
+  <ul class="list-group">
+    <li class="list-group-item"> <p>
   <strong>Title:</strong>
   <%= @micropost.title %>
-</p>
-
-<p>
+</p></li>
+    <li class="list-group-item"><p>
   <strong>Content:</strong>
   <%= @micropost.content %>
 </p>
-
-<p>
+</li>
+    <li class="list-group-item"><p>
   <strong>User:</strong>
   <%= @micropost.user_id %>
-</p>
-
-<p>
+</p></li>
+    <li class="list-group-item"><p>
   <strong>CurrentUser:</strong>
   <%= current_user.uid %>
-</p>
+</p> </li>
+  </ul>
+</div>
+<div class = "btn-group">
+            <div class="btn pull-center"> 
+            <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-edit"></i>
 
-<%= link_to 'Edit', edit_micropost_path(@micropost) %> |
-<%= link_to 'Back', microposts_path %>
+                    Editar
+                    </button>'.html_safe, edit_micropost_path(@micropost)%>
+            </div>
+        
+             <div class="btn  pull-right"> 
+                    <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-arrow-left"></i>
+                    Enrere
+                    </button>'.html_safe, microposts_path%>
+                    
+             </div>
+        </div>
+</div>
+</body>
+
+
+
+
+
+
