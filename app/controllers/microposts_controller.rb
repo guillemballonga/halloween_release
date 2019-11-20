@@ -25,7 +25,8 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
+    @micropost.created = Time.now
+    
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Issue was successfully created.' }
@@ -69,6 +70,11 @@ class MicropostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
-      params.require(:micropost).permit(:content, :user_id, :title)
+      params.require(:micropost).permit(:title, :description, :user_id, :kind, :priority)
     end
+    
+    def micropost_params
+      params.require(:micropost).permit(:upload)
+    end
+    
 end

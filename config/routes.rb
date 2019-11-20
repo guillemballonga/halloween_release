@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  resources :microposts
+  get 'uploads/index'
+  get 'uploads/new'
+  get 'uploads/create'
+  get 'uploads/destroy'
+  resources :comments
   resources :users
+  resources :uploads
+  resources :microposts do
+    resources :comments
+    resources :uploads
+   end
+  
    
   #Login Google
   get 'login', to: redirect('/auth/google_oauth2'), as: 'login'

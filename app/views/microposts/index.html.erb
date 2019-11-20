@@ -71,25 +71,25 @@
                     <% @microposts.each do |micropost| %>
                         <tr>
                             <td class="align-middle">
-                                <%= micropost.id %><%= micropost.title %>
+                                #<%= micropost.id %>: <%= micropost.title %>
                             </td>
                             <td class="align-middle">
-                                T
+                                <%= micropost.kind %>
                             </td>
                             <td class="align-middle">
-                                P
+                                <%= micropost.priority %>
                             </td>
                             <td class="align-middle">
-                                RESOLVED
+                                <%= micropost.status %>
                             </td>
                             <td class="align-middle">
-                                1
+                                <%= micropost.votes %>
                             </td>
                             <td class="align-middle">
                                 <%= micropost.user.first_name %>
                             </td>
                             <td class="align-middle">
-                                2019-11-07
+                                <%= micropost.created %>
                             </td>
                             <td class="align-middle">
                                 2019-11-07

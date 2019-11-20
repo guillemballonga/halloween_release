@@ -18,8 +18,8 @@
 
 
   <div class="field-group">
-    <%= form.label :content, 'Description' %>
-    <%= form.text_area :content %>
+    <%= form.label :description, 'Description' %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field-group">
@@ -30,24 +30,13 @@
   
   <div class="field-group">
     <%= form.label :kind, 'Kind' %>
-  <select>
-    <option value="0">bug</option>
-    <option value="1">enhancement</option>
-    <option value="2">proposal</option>
-    <option value="3">task</option>
-  </select>
-</div>
+    <%= form.select :kind, Micropost.kinds.keys %>
+  </div>
 
   <div class="field-group">
     <%= form.label :priority, 'Priority' %>
-  <select>
-    <option value="0">trivial</option>
-    <option value="1">minor</option>
-    <option value="2">major</option>
-    <option value="3">critical</option>
-    <option value="3">blocker</option>
-  </select>
-</div>
+    <%= form.select :priority, Micropost.priorities.keys %>  
+  </div>
     
   </div>
   

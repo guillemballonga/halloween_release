@@ -1,0 +1,19 @@
+Exercici CSI. Arquitectura (arquitectes) vs. Informàtica (informàtics/ques)
+
+Similituds: 
+			·els dos dissenyen, construeixen artefactes (construccions físiques o diferents 
+	 		 software per exemple) 
+			·En un projecte tenir en compte les diferents etapes que aquest comportarà. 
+			 tenir en compte posibles imprevistos per diners, infraestructures, programes que no
+			 funcionin com s'esperava i altres contratemps.
+			·Tant els arquitectes com els informàtics pretenen transformar activament el món en el 
+			 que vivim (físic (arquitecte) o "virtual" (informàtics)).
+Principals diferències: 
+			·Potser els informàtics actualment han d'estar formant-se més sovint (per obligació)
+			que no pas els arquitectes, per l'avenç que s'està fent en aquests últims anys
+			continuament.
+			
+funcionalitat del producte final cap al client es més variada.
+
+Deures semana que ve:
+per que va guanyar accentur el concurs.
