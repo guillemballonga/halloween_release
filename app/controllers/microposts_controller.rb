@@ -72,6 +72,6 @@ class MicropostsController < ApplicationController
     def micropost_params
       params.require(:micropost).permit(:title, :description, :user_id, :kind, :priority, :upload)
     end
-    
+    #gang gang
     
 end
