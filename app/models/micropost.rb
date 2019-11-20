@@ -2,6 +2,7 @@ class Micropost < ApplicationRecord
   
   belongs_to :user
   has_many :comments
+  has_many :uploads, dependent: :destroy
   validates :description, length: { maximum: 140 },
                       presence: true
  validates :title, presence: true                    

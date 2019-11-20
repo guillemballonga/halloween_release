@@ -53,6 +53,18 @@
   </p>
 <% end %>
 
+<!--Botons attachments-->
+       <p>
+          <% @micropost.uploads.each do |upload| %>
+            <td>
+              <a href=<%= upload.attachment_url %>><%= upload.name%></a>
+              <%= link_to 'Delete',upload, method: :delete, data: { confirm: 'Estàs segur?' }%>
+            </td>
+        <% end %>
+       </p>
+
+<a href=/uploads/new?micropost_id=<%= @micropost.id %>><button type="button" class="btn btn-primary">Upload files</button></a>
+
 <h2>Add a comment:</h2>
 <%= form_for([@micropost, @micropost.comments.new]) do |f| %>
   <p>
