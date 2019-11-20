@@ -7,5 +7,5 @@ class Micropost < ApplicationRecord
  validates :title, presence: true                    
  enum kind: [:bug, :enhancement, :proposal, :task]
  enum priority: [:trivial, :minor, :major, :critical, :blocker]
- enum status: [:new, :open, :resolved, :on_hold, :invalid, :duplicate, :wontfix, :closed]
+ enum status: [:neww, :open, :resolved, :on_hold, :invalidd, :duplicate, :wontfix, :closed]
 end

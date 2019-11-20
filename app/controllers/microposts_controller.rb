@@ -25,7 +25,8 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
-
+    @micropost.created = Time.now
+    
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Issue was successfully created.' }
