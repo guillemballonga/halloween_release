@@ -56,6 +56,7 @@
             <table class="table table-borderless table-hover">
                 <thead class="border-bottom">
                     <tr>
+                        <th scope="1" style="width:26%;">Votes</th>
                         <th scope="1" style="width:26%;">Title</th>
                         <th scope="1" style="width:5%;">T</th>
                         <th scope="1" style="width:5%;">P</th>
@@ -70,6 +71,16 @@
                 <tbody>
                     <% @microposts.each do |micropost| %>
                         <tr>
+                            <td class="align-middle">
+                                <button class="btn btn-default">
+                                <i class="fas fa-arrow-up"></i></button>
+                    
+                                <button class="btn btn-default">
+                                <i class="fas fa-arrow-down"></i></button>
+                    
+                    
+                            </td>
+                            
                             <td class="align-middle">
                                 #<%= micropost.id %>: <%= micropost.title %>
                             </td>
