@@ -133,11 +133,14 @@ th,td {
 }
 
 .imgRedondaPerfil {
-    width:500px;
-    height:500px;
-    border-radius:200px;
-    border:20px solid #B02304;
-    text-align: right
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
     
     
 }

@@ -1,80 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5da8472b00.js" crossorigin="anonymous"></script>
+</head>
+<body>
 <p id="notice"><%= notice %></p>
+<div class="form-issue">
+  
 
-
-<p>
+<div class="container">
+  <h2>Issue</h2>
+  <ul class="list-group">
+    <li class="list-group-item"> <p>
   <strong>Title:</strong>
   <%= @micropost.title %>
 </p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @micropost.description %>
-</p>
-
-<p>
+</li>
+    <li class="list-group-item"><p>
   <strong>User:</strong>
   <%= @micropost.user_id %>
-</p>
-
-<p>
+</p></li>
+    <li class="list-group-item"><p>
   <strong>CurrentUser:</strong>
   <%= current_user.uid %>
-</p>
+</p> </li>
+  </ul>
+</div>
+<div class = "btn-group">
+            <div class="btn pull-center"> 
+            <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-edit"></i>
 
-<h2>All Comments:</h2>
-<% @micropost.comments.each do |comment| %>
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  
-    <font color="blue">User :</font>
-    <%= comment.user.first_name  %>
-    <%=  comment.user.last_name %>
-    
-    <font color="green">Creat fa :</font>
-    <%= time_ago_in_words(comment.created_at) %>
-    
-    <!--if user.uid == comment.user.uid then  (Nomes els creadors del comentari veuràn els botons d'Edit i Delete d'aquest)-->
-    
-    
-    <% if request.query_parameters["edit"] == comment.id.to_s then %>
-          <div id="myform">
-            <%= form_for [@micropost, comment] do |f| %>
-            <%= f.text_area :body %><br/>
-            <%= f.submit "Update Comment", class: "comment" %>
-            <% end %>
-          </div>
-  <% end %>
-  
-  <a href="?edit=<%= comment.id %>">Edit</a>
-    
-    <button style="border-color:red" type="button" class="btn btn-danger"><%= link_to 'Delete',comment, method: :delete, data: { confirm: 'Estàs segur?' }%></button>&nbsp;
-    <!--  end  (de la comprovació del current user es el mateix que el creador del comentari)-->
-  </p>
-<% end %>
+                    Editar
+                    </button>'.html_safe, edit_micropost_path(@micropost)%>
+            </div>
+        
+             <div class="btn  pull-right"> 
+                    <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-arrow-left"></i>
+                    Enrere
+                    </button>'.html_safe, microposts_path%>
+                    
+             </div>
+        </div>
+</div>
+</body>
 
-<!--Botons attachments-->
-       <p>
-          <% @micropost.uploads.each do |upload| %>
-            <td>
-              <a href=<%= upload.attachment_url %>><%= upload.name%></a>
-              <%= link_to 'Delete',upload, method: :delete, data: { confirm: 'Estàs segur?' }%>
-            </td>
-        <% end %>
-       </p>
-
-<a href=/uploads/new?micropost_id=<%= @micropost.id %>><button type="button" class="btn btn-primary">Upload files</button></a>
-
-<h2>Add a comment:</h2>
-<%= form_for([@micropost, @micropost.comments.new]) do |f| %>
-  <p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-
-<%= link_to 'Edit', edit_micropost_path(@micropost) %> |
-<%= link_to 'Back', microposts_path %>

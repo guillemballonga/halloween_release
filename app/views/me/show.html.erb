@@ -1,46 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
 
-    	<div align=center>
-            <img src= <%=current_user.picture%> class='imgRedondaPerfil' />
-            
-        </div>    
-<p>
-  <strong>Nom:</strong>
-  <%= current_user.first_name %>
-</p>
-<p>
-  <strong>Cognoms:</strong>
-  <%= current_user.last_name %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= current_user.email %>
-</p>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5da8472b00.js" crossorigin="anonymous"></script>
+</head>
 
+<body>
 
-  
-    <strong>Posts:</strong>
-    
-  <table>
-    <thead>
-      <tr>
-        <th>Content</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% current_user.microposts.each do |micropost| %>
-        <tr>
-          <td><%= micropost.content %></td>
-          <td><%= link_to 'Show', micropost %></td>
-          <td><%= link_to 'Edit Post', edit_micropost_path(micropost) %></td>
-          <td><%= link_to 'Destroy Post', micropost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</p>
-<%= link_to 'Editar Perfil', edit_user_path(current_user) %> |
-<%= link_to 'Issues', microposts_path %>
+    <div class="form-user">
+        <div align=center>
+            <img src=<%=current_user.picture%> class='imgRedondaPerfil' />
+        </div>
+        <br>
+        </br>
 
+        <ul class="list-group">
+            <li class="list-group-item active">
+                <%= current_user.first_name %>
+                    <%= current_user.last_name %>
+            </li>
+            <li class="list-group-item"><span class="fas fa-at"></span>
+                <%= current_user.email %>
+            </li>
+            <li class="list-group-item"><span class="far fa-clone"></span> Issues
+                <br>
+                </br>
+                <table class="table table-striped">
+                    <tbody>
+                        <% current_user.microposts.each do |micropost| %>
+                            <tr>
+                                <div class="fila">
+                                    <div>
+                                        <td>
+                                            <h5><%= micropost.title %></h5></td>
+                                    </div>
+                                    <div>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">
+                                                <%= link_to 'Show', micropost %>
+                                            </button>&nbsp;</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success">
+                                                <%= link_to 'Edit',edit_micropost_path(micropost) %>
+                                            </button>&nbsp;</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger">
+                                                <%= link_to 'Delete',micropost, method: :delete, data: { confirm: 'Are you sure?' }%>
+                                            </button>&nbsp;</td>
+                                    </div>
+                                </div>
+                            </tr>
+                            <% end %>
+                    </tbody>
+                </table>
+            </li>
+            </li>
+        </ul>
 
+        </p>
+        
+        <div class = "btn-group">
+            <div class="btn pull-center"> 
+            <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-edit"></i>
 
+                    Editar
+                    </button>'.html_safe, edit_user_path(current_user)%>
+            </div>
+        
+             <div class="btn  pull-right"> 
+                    <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                    <i class="fas fa-arrow-left"></i>
+                    Enrere
+                    </button>'.html_safe, microposts_path%>
+                    
+             </div>
+        </div>
+    </div>
+</body>
