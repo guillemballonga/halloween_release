@@ -9,4 +9,6 @@ class Micropost < ApplicationRecord
  enum kind: [:bug, :enhancement, :proposal, :task]
  enum priority: [:trivial, :minor, :major, :critical, :blocker]
  enum status: [:neww, :open, :resolved, :on_hold, :invalidd, :duplicate, :wontfix, :closed]
+ 
+ #coment random
 end
