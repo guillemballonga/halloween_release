@@ -14,6 +14,9 @@ gem 'jquery-rails'
 #LoginGoogle
 gem 'omniauth-google-oauth2'
 
+#Votes
+gem 'acts_as_votable'
+
 group :development, :test do
   gem 'sqlite3', '1.4.1'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]

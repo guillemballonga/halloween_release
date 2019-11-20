@@ -10,5 +10,6 @@ class Micropost < ApplicationRecord
  enum priority: [:trivial, :minor, :major, :critical, :blocker]
  enum status: [:neww, :open, :resolved, :on_hold, :invalidd, :duplicate, :wontfix, :closed]
  
- #coment random
+ #votes
+ acts_as_votable
 end
