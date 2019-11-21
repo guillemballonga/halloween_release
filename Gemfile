@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+#require 'thumbs_up'
+
+
 gem 'rails',      '6.0.0'
 gem 'puma',       '3.12.1'
 gem 'sass-rails', '5.1.0'
@@ -13,6 +16,10 @@ gem 'jquery-rails'
 
 #LoginGoogle
 gem 'omniauth-google-oauth2'
+
+#Vote System
+gem 'acts_as_votable'
+
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

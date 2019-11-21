@@ -6,10 +6,19 @@ Rails.application.routes.draw do
   resources :comments
   resources :users
   resources :uploads
+  
   resources :microposts do
     resources :comments
     resources :uploads
+    #Votes
+    
+    member do
+    put "like", to: "microposts#upvote"
+    put "dislike", to: "microposts#downvote"
+    end
    end
+  
+  
   
    
   #Login Google

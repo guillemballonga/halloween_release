@@ -1,43 +1,142 @@
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-      <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/5da8472b00.js" crossorigin="anonymous"></script>
 </head>
-<body>
+
+
+
 <p id="notice"><%= notice %></p>
+
 <div class="form-issue">
+    
+    
+
+<p>
+  <h1><%= @micropost.title %></h1>
+</p>
+
+
+
+<div class="informacio">
+
+<ul class="list-group">
+  
+  </p></li>
+<li class="list-group-item"><p>
+  Issue #<%= @micropost.id %> <%= @micropost.status %>
+</p></li>
+  
+  <li class="list-group-item"><p>
+  <strong>Created at </strong> <%= @micropost.created_at %> 
+  
+  <div align=center>
+    <strong> Created by </strong><%= @micropost.user.first_name %> <%=@micropost.user.last_name%>     <img src=<%=@micropost.user.picture%> class='imgRedonda' />
+  </div>
+  updated at: <%= @micropost.updated_at %> 
+  
+  <!--@micropost.user_id--> 
+</p></li>
+<li class="list-group-item"><p>
+  <strong>Description:</strong>
+  <%= @micropost.description %>
+</p></li>
+</ul>
+</div>
+
+<div class "comments">
+
+
+    <h2>All Comments:</h2>
+
+
+
+<ul class="list-group">
+<% @micropost.comments.each do |comment| %>
+  <li class="list-group-item">
+    
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  
+    <font color="blue">User :</font>
+    <%= comment.user.first_name  %>
+    <%=  comment.user.last_name %>
+    
+    <font color="green">Creat fa :</font>
+    <%= time_ago_in_words(comment.created_at) %>
+    
+    <!--if user.uid == comment.user.uid then  (Nomes els creadors del comentari veuràn els botons d'Edit i Delete d'aquest)-->
+    
+    
+    <div>
+    <% if request.query_parameters["edit"] == comment.id.to_s then %>
+          <div id="myform">
+            
+            <%= form_for [@micropost, comment] do |f| %>
+            <%= f.text_area :body %><br/>
+            <%= f.submit "Update Comment", class: "comment" %>
+            <% end %>
+          </div>
+  <% end %>
+  </div>
+  
+  <div class="btn-group" role="group" aria-label="Basic example">
+      
+<button type="button" class="btn btn-secondary"><a href="?edit=<%= comment.id %>">Edit</a></button>
+  <button type="button" class="btn btn-secondary"><%= link_to 'Delete',comment, method: :delete, data: { confirm: 'Estàs segur?' }%></button>
+
+  </div>
   
 
-<div class="container">
-  <h2>Issue</h2>
-  <ul class="list-group">
-    <li class="list-group-item"> <p>
-  <strong>Title:</strong>
-  <%= @micropost.title %>
-</p>
-</li>
-    <li class="list-group-item"><p>
-  <strong>User:</strong>
-  <%= @micropost.user_id %>
-</p></li>
-    <li class="list-group-item"><p>
-  <strong>CurrentUser:</strong>
-  <%= current_user.uid %>
-</p> </li>
-  </ul>
+  </li>
+  <% end %>
+</ul>
+
+
+
+<% @micropost.comments.each do |comment| %>
+  
+<% end %>
 </div>
-<div class = "btn-group">
+
+<div class="addcoment">
+<h2>Add a comment:</h2>
+<%= form_for([@micropost, @micropost.comments.new]) do |f| %>
+  <p>
+   
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+</div>
+
+
+<!--Botons attachments-->
+<div class="attachments">
+       <p>
+          <% @micropost.uploads.each do |upload| %>
+            <td>
+              <a href=<%= upload.attachment_url %>><%= upload.name%></a>
+              <%= link_to 'Delete',upload, method: :delete, data: { confirm: 'Estàs segur?' }%>
+            </td>
+        <% end %>
+        </div>
+       </p>
+
+<a href=/uploads/new?micropost_id=<%= @micropost.id %>><button type="button" class="btn btn-primary"><i class="fas fa-upload"></i> Upload files</button></a>
+
+
+       <div class = "btn-group">
             <div class="btn pull-center"> 
             <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
                     <i class="fas fa-edit"></i>
@@ -54,6 +153,6 @@
                     
              </div>
         </div>
-</div>
-</body>
 
+
+</div>
