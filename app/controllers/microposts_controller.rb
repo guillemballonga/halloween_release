@@ -55,10 +55,14 @@ class MicropostsController < ApplicationController
   # DELETE /microposts/1
   # DELETE /microposts/1.json
   def destroy
-    @micropost.destroy
-    respond_to do |format|
-      format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
-      format.json { head :no_content }
+    if(@micropost.user.id==current_user.id)
+      @micropost.destroy
+      respond_to do |format|
+        format.html { redirect_to microposts_url, notice: 'Micropost was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else 
+      redirect_to microposts_url, notice: 'NO POTS BORRAR UNA ISSUE QUE NO ES TEVA.'
     end
   end
 
