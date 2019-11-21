@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   # POST /micropost.json
   def create
     @comment = @micropost.comments.new (comment_params)
-    @comment.user = User.first
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
