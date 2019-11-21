@@ -1,6 +1,9 @@
   #validates :name, presence: true
   #validates :email, presence: true
 class User < ApplicationRecord
+	
+	acts_as_voter
+	
   has_many :microposts
   has_many :comments
   
@@ -15,4 +18,5 @@ class User < ApplicationRecord
 			user.save!
 		end
 	end
+
 end

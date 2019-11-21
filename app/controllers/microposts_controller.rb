@@ -62,6 +62,21 @@ class MicropostsController < ApplicationController
     end
   end
 
+#upvote_from user
+  #downvote_from user
+def upvote 
+  @micropost = Micropost.find(params[:id])
+  @micropost.upvote_by current_user
+  redirect_to :issues
+end  
+
+def downvote
+  @micropost = Micropost.find(params[:id])
+  @micropost.downvote_by current_user
+  redirect_to :issues
+end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_micropost
