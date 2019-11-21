@@ -4,7 +4,23 @@ class MicropostsController < ApplicationController
   # GET /microposts
   # GET /microposts.json
   def index
-    @microposts = Micropost.all
+    @q = params[:q]
+    @status1 = params[:status1]
+    @status2 = params[:status2]
+    @user = params[:user]
+    @watching = params[:watching]
+    
+    if @q
+      @microposts = Micropost.where("title LIKE ? OR id = ?", "%" + @q + "%", @q)
+    else
+      @microposts = Micropost.all
+    end 
+    
+    if @status1 && @status2 
+      @microposts = @microposts.where(status: [:resolved, :open])
+    elsif @user
+      @microposts = @microposts.where("user_id = ?", current_user.id)
+    end
   end
 
   # GET /microposts/1

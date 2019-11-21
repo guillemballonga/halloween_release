@@ -51,7 +51,27 @@
              <%end%>
         </div>
         <h1>Issues</h1>
-        
+        <div class="row my-3">
+                <div class="col-6">
+                    <div class="text-left">
+                        Filter by:
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-secondary"><%= link_to 'All', microposts_path({q: params[:q]}.compact) %></button>
+                          <button type="button" class="btn btn-secondary"><%= link_to 'Open', microposts_path({status1: "neww", status2:"open",q: params[:q]}.compact) %></button>
+                          <button type="button" class="btn btn-secondary"><%= link_to 'My issues', microposts_path({user: current_user.uid,q: params[:q]}.compact) %></button>
+                          <button type="button" class="btn btn-secondary"><%= link_to 'Watching', microposts_path({watching: 1,q: params[:q]}.compact) %></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="text-right">
+                        <form>
+                             <input name="q" value="<%= @q %>" placeholder="Find issues" >
+                             <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+        </div>        
         <div class="table-responsive">
             <table class="table table-borderless table-hover">
                 <thead class="border-bottom">
