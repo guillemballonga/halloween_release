@@ -17,7 +17,7 @@ class MicropostsController < ApplicationController
     end 
     
     if @status1 && @status2 
-      @microposts = @microposts.where(status: [:resolved, :open])
+      @microposts = @microposts.where(status: [:neww, :open])
     elsif @user
       @microposts = @microposts.where("user_id = ?", current_user.id)
     end
