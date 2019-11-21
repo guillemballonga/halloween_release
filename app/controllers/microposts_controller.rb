@@ -26,6 +26,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = Micropost.new(micropost_params)
     @micropost.created = Time.now
+    @micropost.user = current_user
     
     respond_to do |format|
       if @micropost.save
@@ -66,6 +67,7 @@ class MicropostsController < ApplicationController
     end
   end
 
+
 #upvote_from user
   #downvote_from user
 def upvote 
@@ -73,6 +75,8 @@ def upvote
   @micropost.upvote_by current_user
   redirect_to :issues
 end  
+
+
 
 def downvote
   @micropost = Micropost.find(params[:id])

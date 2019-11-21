@@ -39,11 +39,11 @@
   <strong>Created at </strong> <%= @micropost.created_at %> 
   
   <div align=center>
-    <strong> Created by </strong><%= @micropost.user.first_name %> <%=@micropost.user.last_name%>     <img src=<%=@micropost.user.picture%> class='imgRedonda' />
+    <strong> Assigned to </strong><%= @micropost.user.first_name %> <%=@micropost.user.last_name%>     <img src=<%=@micropost.user.picture%> class='imgRedonda' />
   </div>
   updated at: <%= @micropost.updated_at %> 
   
-  <!--@micropost.user_id--> 
+  MICROPOST USER ID <%= @micropost.user_id %> 
 </p></li>
 <li class="list-group-item"><p>
   <strong>Description:</strong>
@@ -68,7 +68,7 @@
   
     <font color="blue">User :</font>
     <%= comment.user.first_name  %>
-    <%=  comment.user.last_name %>
+    <%= comment.user.last_name %>
     
     <font color="green">Creat fa :</font>
     <%= time_ago_in_words(comment.created_at) %>
