@@ -38,6 +38,10 @@
     <%= form.select :priority, Micropost.priorities.keys %>  
   </div>
     
+  <div class="field-group">
+    <%= form.label :status, 'Status' %>
+    <%= form.select :status, Micropost.statuses.keys %>  
+  </div>    
   </div>
   
   <div class="input-group">

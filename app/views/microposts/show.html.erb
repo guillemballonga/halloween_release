@@ -22,8 +22,20 @@
 
 <p>
   <h1><%= @micropost.title %></h1>
+  
+  
 </p>
 
+<td class="align-middle">
+    <button class="btn btn-default">
+    <i class="fas fa-arrow-up"></i><%= link_to "Upvote", like_micropost_path(@micropost), method: :put %></button>
+    <button class="btn btn-default">
+    <i class="fas fa-arrow-down"></i><%= link_to "Downvote", dislike_micropost_path(@micropost), method: :put %>  </button>
+</td>
+
+ <td class="align-middle">
+                                <%= @micropost.get_upvotes.size %>
+        </td>
 
 
 <div class="informacio">
@@ -45,6 +57,8 @@
   
   <!--@micropost.user_id--> 
 </p></li>
+
+
 <li class="list-group-item"><p>
   <strong>Description:</strong>
   <%= @micropost.description %>
