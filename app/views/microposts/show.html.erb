@@ -94,7 +94,7 @@ FALTA CREAR FORM PETIT
     <font color="green">Creat fa :</font>
     <%= time_ago_in_words(comment.created_at) %>
     
-    <!--if user.uid == comment.user.uid then  (Nomes els creadors del comentari veuràn els botons d'Edit i Delete d'aquest)-->
+     <% if User.first.uid == comment.user.uid then  %><!--només usuaris prop. del comment podràn veure aquets botons-->
     
     
     <div>
@@ -106,7 +106,7 @@ FALTA CREAR FORM PETIT
             <%= f.submit "Update Comment", class: "comment" %>
             <% end %>
           </div>
-  <% end %>
+   <% end %>
   </div>
   
   <div class="btn-group" role="group" aria-label="Basic example">
@@ -115,10 +115,12 @@ FALTA CREAR FORM PETIT
   <button type="button" class="btn btn-secondary"><%= link_to 'Delete',comment, method: :delete, data: { confirm: 'Estàs segur?' }%></button>
 
   </div>
-  
+  <% end %>
 
   </li>
   <% end %>
+  
+
 </ul>
 
 
