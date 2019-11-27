@@ -149,7 +149,7 @@ FALTA CREAR FORM PETIT
        <p>
           <% @micropost.uploads.each do |upload| %>
             <td>
-              <a href=<%= upload.attachment_url %>><%= upload.name%></a>
+             <strong>Attachments:</strong> <a href=<%= upload.attachment_url %>><%= upload.name%></a>
               <%= link_to 'Delete',upload, method: :delete, data: { confirm: 'Estàs segur?' }%>
             </td>
         <% end %>

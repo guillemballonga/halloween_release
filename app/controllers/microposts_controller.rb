@@ -58,7 +58,42 @@ class MicropostsController < ApplicationController
   # PATCH/PUT /microposts/1.json
   def update
     respond_to do |format|
+      @description = @micropost.description
+      @title = @micropost.title  
+      @priority = @micropost.priority
+      @kind = @micropost.kind 
+      @status = @micropost.status 
       if @micropost.update(micropost_params)
+        if(@title.to_s != @micropost.title.to_s)
+          @comment = @micropost.comments.new
+          @comment.body = "Changed title to " + @micropost.title.to_s
+          @comment.user = User.new
+          @comment.save
+        end
+        if(@priority.to_s != @micropost.priority.to_s)
+          @comment = @micropost.comments.new
+          @comment.body = "Priority changed from "+ @priority.to_s + " to " + @micropost.priority.to_s
+          @comment.user = User.new
+          @comment.save
+        end
+        if(@kind.to_s != @micropost.kind.to_s)
+          @comment = @micropost.comments.new
+          @comment.body = "Kind changed from "+ @kind.to_s + " to " + @micropost.kind.to_s
+          @comment.user = User.new
+          @comment.save
+        end
+        if(@status.to_s != @micropost.status.to_s)
+          @comment = @micropost.comments.new
+          @comment.body = "Status changed from "+ @status.to_s + " to " + @micropost.status.to_s
+          @comment.user = User.new
+          @comment.save
+        end
+        if(@description.to_s != @micropost.description.to_s)
+          @comment = @micropost.comments.new
+          @comment.body = "Description changed to " + @micropost.description.to_s
+          @comment.user = User.new
+          @comment.save
+        end
         format.html { redirect_to @micropost, notice: 'Issue was successfully updated.' }
         format.json { render :show, status: :ok, location: @micropost }
       else
