@@ -18,141 +18,155 @@
 </head>
 
 <body>
-    <p id="notice">
-        <%= notice %>
-    </p>
-    
-    <div class="container-fluid"> 
-    
- 
-    <div class = "form-issues">
-        <div class = "btn-group">
-            <% if current_user %>
-            <div class="btn pull-left"> 
-                <button class="btn btn-primary"><i class="fa fa-user-circle-o"></i>
-                <a href=me#show><%= current_user.first_name %> <%= current_user.last_name %>
-                </button>
-            </div> 
-              <% end %>
-            <div class="btn pull-center"> 
-            <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
-                    <i class="fas fa-plus"></i>
-                    Afegir una issue
-                    </button>'.html_safe, new_micropost_path%>
-            </div>
-            <% if current_user %>
-             <div class="btn  pull-right"> 
-                    <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
-                    <i class="fas fa-sign-out-alt"></i></i>
-                    Logout
-                    </button>'.html_safe, logout_path%>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 py-3 px-0 col-md-1 col-xl-1" style="background-color: rgb(7, 71, 166);">
+                
+                <% if current_user %>
+                    <div class="h-50 pb-3 d-flex justify-content-center align-items-start">
+                        <span class="fa-stack fa-2x"><a href="me#show">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <span class="fa fa-stack-1x" style="color:red;">
+                                  <%= current_user.first_name.chr %><%= current_user.last_name.chr %>
+                            </span></a>
+                        </span> 
+                    </div>        
+                    <div class="h-50 d-flex justify-content-center align-items-end">
+                        <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                        <i class="fas fa-sign-out-alt"></i></i>
+                        Logout
+                        </button>'.html_safe, logout_path%>    
+                    </div>
                     
-             </div>
-             <%end%>
-        </div>
-        <h1>Issues</h1>
-        <div class="row my-3">
-                <div class="col-6">
-                    <div class="text-left">
-                        Filter by:
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-secondary"><%= link_to 'All', microposts_path({q: params[:q]}.compact) %></button>
-                          <button type="button" class="btn btn-secondary"><%= link_to 'Open', microposts_path({status1: "neww", status2:"open",q: params[:q]}.compact) %></button>
-                          <button type="button" class="btn btn-secondary"><%= link_to 'My issues', microposts_path({user: current_user.uid,q: params[:q]}.compact) %></button>
-                          <button type="button" class="btn btn-secondary"><%= link_to 'Watching', microposts_path({watching: 1,q: params[:q]}.compact) %></button>
+                <%end%>
+            </div>
+            <div class="col-6 px-0 col-md-2 col-xl-1" style="background-color:rgb(244, 245, 247);">
+                <div class="h-50 py-1 d-flex justify-content-center align-items-end">
+                    <%= link_to '<button type="button" class="btn btn-outline-secondary btn-sm btn-block">
+                        <i class="fas fa-tasks"></i></i>
+                        Issues
+                        </button>'.html_safe, microposts_path %>    
+                </div>
+                <div class="h-50 py-1 d-flex justify-content-center align-items-start">
+                    <%= link_to '<button type="button" class="btn btn-outline-secondary btn-sm btn-block">
+                        <i class="fas fa-users"></i></i>
+                        Users
+                        </button>'.html_safe, users_path %>
+                </div>
+            </div>
+            <div class="col-12 col-md-9 col-xl-10 min-vh-100">
+                <div class="row mt-2">
+                    <div class="col">
+                        <div class="float-left"><h1>Issues</h1></div>
+                        <div class="float-right"> 
+                            <%= link_to '<button type="button" class="btn btn-primary btn-addisuey">
+                                    <i class="fas fa-plus"></i>
+                                    Afegir una issue
+                                    </button>'.html_safe, new_micropost_path%>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="text-right">
-                        <form>
-                             <input name="q" value="<%= @q %>" placeholder="Find issues" >
-                             <button type="submit">Buscar</button>
-                        </form>
+                <div class="row mt-2 align-items-center">
+                    <script>
+                        $(function(){
+                          var current_page_URL = location.href;
+                          
+                          $( ".nav2 a" ).each(function() {
+                              if (current_page_URL.includes('status1') && current_page_URL.includes('status2')){
+                                   $('.nav2 a').parents('li, ul').removeClass('selectednav');
+                                   $('#open-filter').parent('li').addClass('selectednav');
+                                   return false;
+                               } else if (current_page_URL.includes('user')){
+                                   $('.nav2 a').parents('li, ul').removeClass('selectednav');
+                                   $('#user-filter').parent('li').addClass('selectednav');
+                                   return false;
+                               } else if (current_page_URL.includes('watching')){
+                                   $('.nav2 a').parents('li, ul').removeClass('selectednav');
+                                   $('#watching-filter').parent('li').addClass('selectednav');
+                                   return false;
+                               } else {
+                                   $('.nav2 a').parents('li, ul').removeClass('selectednav');
+                                   $('#all-filter').parent('li').addClass('selectednav');
+                                   return false;
+                               }                                
+                          });
+                        });
+                    </script>
+                        
+                    <div class="col-1">
+                        Filter by: 
+                    </div>    
+                    <div class="col-5">
+                        <ul class="nav2 list-group list-group-horizontal-sm">
+                          <li class="list-group-item list-group-item-action border-0 selectednav mr-1"><%= link_to 'All', microposts_path({q: params[:q]}.compact), :id => "all-filter" %></li>
+                          <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'Open', microposts_path({status1: "neww", status2: "open",q: params[:q]}.compact), :id => "open-filter" %></li>
+                          <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'My issues', microposts_path({user: current_user.uid,q: params[:q]}.compact), :id => "user-filter" %></li>
+                          <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'Watching', microposts_path({watching: 1,q: params[:q]}.compact), :id => "watching-filter" %></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-right">
+                            <form>
+                                 <input name="q" value="<%= @q %>" placeholder="Find issues" >
+                                 <button type="submit">Buscar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-        </div>        
-        <div class="table-responsive">
-            <table class="table table-borderless table-hover">
-                <thead class="border-bottom">
-                    <tr>
-                        <th scope="1" style="width:26%;">Vote</th>
-                        <th scope="1" style="width:26%;">Title</th>
-                        <th scope="1" style="width:5%;">T</th>
-                        <th scope="1" style="width:5%;">P</th>
-                        <th scope="1" style="width:7%;">Status</th>
-                        <th scope="1" style="width:5%;">Votes</th>
-                        <th scope="1" style="width:10%;">Asignee</th>
-                        <th scope="1" style="width:14%;">Created</th>
-                        <th scope="1" style="width:14%;">Updated</th>                    
-                        <th scope="1" style="width:14%;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @microposts.each do |micropost| %>
-                        <tr>
-                            <td class="align-middle">
-                                <button class="btn btn-default">
-                                <i class="fas fa-arrow-up"></i><%= link_to "Upvote", like_micropost_path(micropost), method: :put %></button>
-                                <button class="btn btn-default">
-                                <i class="fas fa-arrow-down"></i><%= link_to "Downvote", dislike_micropost_path(micropost), method: :put %>  </button>
-                            </td>
-                            
-                            <td class="align-middle">
-                                #<%= micropost.id %>: <%= micropost.title %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.kind %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.priority %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.status %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.get_upvotes.size %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.user.first_name %>
-                            </td>
-                            <td class="align-middle">
-                                <%= micropost.created %>
-                            </td>
-                            <td class="align-middle">
-                                2019-11-07
-                            </td>                        
-                            <td class="align-middle">
-                                <div class="content-desktop">
-                                    <div class="btn-group btn-group-sm">
-                                      <button type="button" class="btn btn-primary"><%= link_to 'Show', micropost %></button>&nbsp;
-                                      <button type="button" class="btn btn-success"><%= link_to 'Edit',edit_micropost_path(micropost) %></button>&nbsp;
-                                      <button type="button" class="btn btn-danger"><%= link_to 'Delete',micropost, method: :delete, data: { confirm: 'Are you sure?' }%></button>&nbsp;
-                                      
-                                    </div>
-                                </div>
-                                <div class="content-mobile" style="display:none;"> 
-                                    <div class="icons-group">
-                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="Show"></i>&nbsp;
-                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>&nbsp;
-                                        <i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i>
-                                    </div>
-                                    </div>
-                            </td>
-                        </tr>
-                        <% end %>
-                </tbody>
-            </table>
-        </div>
+                <div class="row mt-2">
+                    <div class="table-responsive" style="background-color:#fff;">
+                        <table class="table table-borderless table-hover">
+                            <thead class="border-bottom">
+                                <tr>
+                                    <th scope="1" style="width:43%;"><%= sortable "id","Title" %></th>
+                                    <th scope="1" style="width:5%;"><%= sortable "kind","T" %></th>
+                                    <th scope="1" style="width:5%;"><%= sortable "priority","P" %></th>
+                                    <th scope="1" style="width:7%;"><%= sortable "Status" %></th>
+                                    <th scope="1" style="width:5%;"><%= sortable "Votes" %></th>
+                                    <th scope="1" style="width:10%;"><%= sortable "Asignee" %></th>
+                                    <th scope="1" style="width:10%;"><%= sortable "Created" %></th>
+                                    <th scope="1" style="width:10%;"><%= sortable "Updated" %></th>                    
+                                    <th scope="1" style="width:5%;">&nbp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @microposts.each do |micropost| %>
+                                    <tr>
+                                        <td class="align-middle">
+                                            <%= link_to "##{micropost.id}: #{micropost.title}", micropost %> 
+                                        </td>
+                                        <td class="align-middle">
+                                            <%= link_to 'task', microposts_path({status1: "neww", status2:"open",q: params[:q]}.compact), :class => "icon icon-#{micropost.kind}", :title => "Filter by type: #{micropost.kind}" %>
+                                        </td>
+                                        <td class="align-middle">
+                                            <%= micropost.priority %>
+                                        </td>
+                                        <td class="align-middle">
+                                            <%= micropost.status %>
+                                        </td>
+                                        <td class="align-middle">
+                                            1
+                                        </td>
+                                        <td class="align-middle">
+                                            <%= micropost.user.first_name %>
+                                        </td>
+                                        <td class="align-middle">
+                                            <%= micropost.created %>
+                                        </td>
+                                        <td class="align-middle">
+                                            2019-11-07
+                                        </td>                        
+                                        <td class="align-middle">
+                                            wat
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                            </tbody>
+                        </table>                
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
-    <!-- %= link_to 'Users', users_path, :class => "btn" %-->
-
-
-   
-   
 </body>
-
 </html>

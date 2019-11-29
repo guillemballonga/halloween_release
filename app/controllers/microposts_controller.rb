@@ -21,6 +21,13 @@ class MicropostsController < ApplicationController
     elsif @user
       @microposts = @microposts.where("user_id = ?", current_user.id)
     end
+    
+    @s = params[:sort]
+    @d = params[:direction]
+    if @s && @d
+      @microposts = Micropost.order(@s + ' ' + @d)
+    end
+        
   end
 
   # GET /microposts/1
@@ -113,19 +120,19 @@ class MicropostsController < ApplicationController
     end
   end
 
-#upvote_from user
-  #downvote_from user
-def upvote 
-  @micropost = Micropost.find(params[:id])
-  @micropost.upvote_by current_user
-  redirect_to :issues
-end  
-
-def downvote
-  @micropost = Micropost.find(params[:id])
-  @micropost.downvote_by current_user
-  redirect_to :issues
-end
+  #upvote_from user
+    #downvote_from user
+  def upvote 
+    @micropost = Micropost.find(params[:id])
+    @micropost.upvote_by current_user
+    redirect_to @micropost
+  end  
+  
+  def downvote
+    @micropost = Micropost.find(params[:id])
+    @micropost.downvote_by current_user
+    redirect_to @micropost
+  end
 
 
   private
