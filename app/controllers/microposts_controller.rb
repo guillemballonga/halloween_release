@@ -25,7 +25,7 @@ class MicropostsController < ApplicationController
     @s = params[:sort]
     @d = params[:direction]
     if @s && @d
-      @microposts = Micropost.order(@s + ' ' + @d)
+      @microposts = @microposts.order(@s + ' ' + @d)
     end
         
   end
