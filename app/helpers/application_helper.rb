@@ -3,6 +3,8 @@ module ApplicationHelper
     title ||= column.titleize
     status_1 = params[:status1]
     status_2 = params[:status2]
+    responsible = params[:responsible]
+    watching = params[:watching]
     css_class = column == params[:sort] ? 'current' : nil
     direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
     
@@ -13,6 +15,6 @@ module ApplicationHelper
       icon_class = nil
     end
     
-    link_to "#{title} <i class='#{icon_class}'".html_safe, :sort => column, :direction => direction,:status1 => status_1,:status2 => status_2, class: css_class
+    link_to "#{title} <i class='#{icon_class}'".html_safe, :sort => column, :direction => direction, :status1 => status_1, :status2 => status_2, :responsible => responsible, :watching => watching, class: css_class
   end
 end

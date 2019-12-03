@@ -76,9 +76,9 @@
                                    $('.nav2 a').parents('li, ul').removeClass('selectednav');
                                    $('#open-filter').parent('li').addClass('selectednav');
                                    return false;
-                               } else if (current_page_URL.includes('user')){
+                               } else if (current_page_URL.includes('responsible')){
                                    $('.nav2 a').parents('li, ul').removeClass('selectednav');
-                                   $('#user-filter').parent('li').addClass('selectednav');
+                                   $('#responsible-filter').parent('li').addClass('selectednav');
                                    return false;
                                } else if (current_page_URL.includes('watching')){
                                    $('.nav2 a').parents('li, ul').removeClass('selectednav');
@@ -91,6 +91,13 @@
                                }                                
                           });
                         });
+                        
+                        $('#input-search').keypress(function(e){
+                              if(e.which == 13){
+                                   $(this).closest('form').submit();
+                               }
+                            });                        
+                        
                     </script>
                         
                     <div class="col-1">
@@ -100,15 +107,14 @@
                         <ul class="nav2 list-group list-group-horizontal-sm">
                           <li class="list-group-item list-group-item-action border-0 selectednav mr-1"><%= link_to 'All', microposts_path({q: params[:q]}.compact), :id => "all-filter" %></li>
                           <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'Open', microposts_path({status1: "neww", status2: "open",q: params[:q]}.compact), :id => "open-filter" %></li>
-                          <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'My issues', microposts_path({user: current_user.uid,q: params[:q]}.compact), :id => "user-filter" %></li>
+                          <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'My issues', microposts_path({responsible: current_user.uid,q: params[:q]}.compact), :id => "responsible-filter" %></li>
                           <li class="list-group-item list-group-item-action border-0 mr-1"><%= link_to 'Watching', microposts_path({watching: 1,q: params[:q]}.compact), :id => "watching-filter" %></li>
                         </ul>
                     </div>
                     <div class="col-6">
-                        <div class="text-right">
+                        <div class="text-right mr-3">
                             <form>
-                                 <input name="q" value="<%= @q %>" placeholder="Find issues" >
-                                 <button type="submit">Buscar</button>
+                               <input id="input-search" class="input-search pl-3" name="q" value="<%= @q %>" placeholder="&#xf002; Find issues" >
                             </form>
                         </div>
                     </div>
@@ -126,7 +132,7 @@
                                     <th scope="1" style="width:10%;"><%= sortable "Asignee" %></th>
                                     <th scope="1" style="width:10%;"><%= sortable "Created" %></th>
                                     <th scope="1" style="width:10%;"><%= sortable "Updated" %></th>                    
-                                    <th scope="1" style="width:5%;">&nbp;</th>
+                                    <th scope="1" style="width:5%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,28 +142,36 @@
                                             <%= link_to "##{micropost.id}: #{micropost.title}", micropost %> 
                                         </td>
                                         <td class="align-middle">
-                                            <%= link_to 'task', microposts_path({status1: "neww", status2:"open",q: params[:q]}.compact), :class => "icon icon-#{micropost.kind}", :title => "Filter by type: #{micropost.kind}" %>
+                                            <%= link_to 'kind', microposts_path({status1: params[:status1], status2: params[:status2], responsible: params[:responsible], watching: params[:watching], q: params[:q], kind: micropost.kind }.compact), :class => "icon icon-#{micropost.kind}", :title => "Filter by type: #{micropost.kind}" %>
                                         </td>
                                         <td class="align-middle">
-                                            <%= micropost.priority %>
+                                            <%= link_to 'priority', microposts_path({status1: params[:status1], status2: params[:status2],  responsible: params[:responsible], watching: params[:watching], q: params[:q], priority: micropost.priority }.compact), :class => "icon icon-#{micropost.priority}", :title => "Filter by priority: #{micropost.priority}" %>
                                         </td>
                                         <td class="align-middle">
-                                            <%= micropost.status %>
+                                            <%= if micropost.status == 'st_new'  # reserved word
+                                                status = 'new'
+                                            elsif micropost.status == 'st_invalid' # reserved word
+                                                status = 'invalid'
+                                            else
+                                                status = micropost.status
+                                            end
+                                            link_to "#{status}", microposts_path({status1: params[:status1], status2: params[:status2], responsible: params[:responsible], watching: params[:watching], q: params[:q], status: micropost.status}.compact), :class => "status-item status-#{status}"
+                                            %>
                                         </td>
                                         <td class="align-middle">
-                                            1
+                                            <span class="votes-item">1</span>
                                         </td>
                                         <td class="align-middle">
-                                            <%= micropost.user.first_name %>
+                                            <%= link_to "#{micropost.user.first_name}", microposts_path({status1: params[:status1], status2: params[:status2], responsible: params[:responsible], watching: params[:watching],q: params[:q], user: micropost.user.id}.compact), :class => "" %>
                                         </td>
                                         <td class="align-middle">
-                                            <%= micropost.created %>
+                                            <%=  DateTime.parse(micropost.created_at.to_s).strftime("%Y/%m/%d")  %>
                                         </td>
                                         <td class="align-middle">
-                                            2019-11-07
+                                            <%=  DateTime.parse(micropost.updated_at.to_s).strftime("%Y/%m/%d")  %>
                                         </td>                        
                                         <td class="align-middle">
-                                            wat
+                                            <%= link_to '', microposts_path({status1: params[:status1], status2: params[:status2], responsible: params[:responsible], watching: params[:watching], q: params[:q]}.compact), :class => "icon not-watching-item" %>
                                         </td>
                                     </tr>
                                     <% end %>

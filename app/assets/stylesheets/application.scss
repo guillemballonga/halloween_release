@@ -26,13 +26,13 @@ th,td {
 
 @media (max-width: 480px) {
  th, td, li {
-   font-size:0.4em;
+    font-size:0.4em;
  } 
 }
 
 @media (min-width:481px) and (max-width:767px) {
  th, td, li {
-   font-size:0.5em;
+    font-size:0.5em;
  } 
 }
 
@@ -43,19 +43,19 @@ th,td {
 
 @media (min-width: 768px) and (max-width: 991px) {
  th, td, li {
-   font-size:0.625em;
+    font-size:0.625em;
  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
  th, td, li {
-   font-size:0.725em;
+    font-size:0.725em;
  }
 }
 
 @media (min-width: 1200px) {
  th, td, li {
-   font-size:0.875rem;
+    font-size:0.875rem;
  }
 }
 
@@ -72,21 +72,16 @@ th,td {
     border-radius:200px;
     border:2px solid #999;
     text-align: right
-    
-    
 }
 
 .imgRedondaPerfil {
-  display: inline-block;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-    
-    
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 
@@ -101,23 +96,94 @@ th,td {
     width: 16px;
 }
 
+/*  ----  ICONS STATUS  ----  */
+
 .icon-bug {
-  background-image: url(asset_path('kinds/bug.svg'));
+    background-image: url(asset_path('kinds/bug.svg'));
 }
 
 .icon-enhancement {
-  background-image: url(asset_path('kinds/enhancement.svg'));
+    background-image: url(asset_path('kinds/enhancement.svg'));
 }
 
 .icon-proposal {
-  background-image: url(asset_path('kinds/proposal.svg'));
+    background-image: url(asset_path('kinds/proposal.svg'));
 }
 
 .icon-task {
-  background-image: url(asset_path('kinds/task.svg'));
+    background-image: url(asset_path('kinds/task.svg'));
 }
 
+/*  ----  ICONS PRIORITIES  ----  */
 
+.icon-blocker {
+    background-image: url(asset_path('priorities/blocker.svg'));
+}
+
+.icon-critical {
+    background-image: url(asset_path('priorities/critical.svg'));
+}
+
+.icon-major {
+    background-image: url(asset_path('priorities/major.svg'));
+}
+
+.icon-minor {
+    background-image: url(asset_path('priorities/minor.svg'));
+}
+
+.icon-trivial {
+    background-image: url(asset_path('priorities/trivial.svg'));
+}
+
+/*  ----  ITEMS STATUS  ----  */
+.status-item {
+    color: #172B4D;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px; 
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 99%;
+    margin: 0;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;    
+}
+
+.status-new {
+    border-color : #a5b3c2;
+}
+
+.status-open {
+    border-color : #ccc;
+}
+
+.status-resolved {
+    border-color: #60b070;
+}
+
+.status-on_hold {
+    border-color: #ffe9a8;    
+}
+
+.status-invalid {
+    border-color: #e8a29b;    
+}
+
+.status-duplicate {
+    border-color: #c0ad9d;
+}
+
+.status-wontfix {
+    border-color: #e8a29b;    
+}
+
+.status-closed {
+    border-color: #60b070;    
+}
 
 a {
   color: #000 !important;
@@ -132,16 +198,56 @@ a {
 }
 
 .list-group-item.selectednav{
-  background-color:#505F79 !important;
+    background-color:#505F79 !important;
 }
 
 .list-group-item.selectednav a {
- color: #ffffff !important;
+    color: #ffffff !important;
    &:hover {
     color: #ffffff !important;
   }
 }
 
 .list-group-item a:link {
- text-decoration:none;
+    text-decoration:none;
+}
+
+.votes-item {
+    background: rgba(0,0,0,.2);
+    color: rgba(51,51,51,.8);
+    border-radius: 2em;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: .99;
+    min-height: 1em;
+    min-width: 1em;
+    padding: 3px 7px 2px;
+    position: relative;
+    text-shadow: none;
+    display: inline-block;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;    
+}
+
+
+.watching-item {
+    background-image: url(asset_path('others/watching.svg'));
+}
+
+.not-watching-item {
+    background-image: url(asset_path('others/not-watching.svg'));
+}
+
+
+.input-search {
+    height:32px;
+    width:200px;    
+    padding:10px;
+	font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+	font-size:0.8em;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;  
 }

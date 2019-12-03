@@ -7,8 +7,12 @@ class MicropostsController < ApplicationController
     @q = params[:q]
     @status1 = params[:status1]
     @status2 = params[:status2]
-    @user = params[:user]
+    @responsible = params[:responsible]
     @watching = params[:watching]
+    @kind = params[:kind]
+    @priority = params[:priority]
+    @status = params[:status]
+    @user_resp = params[:user]
     
     if @q
       @microposts = Micropost.where("title LIKE ? OR id = ?", "%" + @q + "%", @q)
@@ -17,11 +21,27 @@ class MicropostsController < ApplicationController
     end 
     
     if @status1 && @status2 
-      @microposts = @microposts.where(status: [:neww, :open])
-    elsif @user
+      @microposts = @microposts.where(status: [:st_new, :open])
+    elsif @responsible
       @microposts = @microposts.where("user_id = ?", current_user.id)
     end
     
+    if @kind
+      @microposts = @microposts.where(kind: @kind)
+    end
+      
+    if @priority
+      @microposts = @microposts.where(priority: @priority)
+    end
+      
+    if @status
+      @microposts = @microposts.where(status: @status)
+    end
+    
+    if @user_resp
+      @microposts = @microposts.where(user_id: @user_resp)
+    end
+      
     @s = params[:sort]
     @d = params[:direction]
     if @s && @d
