@@ -94,7 +94,8 @@ FALTA CREAR FORM PETIT
     <font color="green">Creat fa :</font>
     <%= time_ago_in_words(comment.created_at) %>
     
-     <% if User.first.uid == comment.user.uid then  %><!--només usuaris prop. del comment podràn veure aquets botons-->
+   
+     <% if current_user.uid == comment.user.uid then  %><!--només usuaris prop. del comment podràn veure aquets botons-->
     
     
     <div>
